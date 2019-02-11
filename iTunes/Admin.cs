@@ -86,35 +86,45 @@ namespace iTunesCOMSample
         
         private void removeUnchecked_Click(object sender, EventArgs e)
         {
-                var selectedTracks = (from tracks in Common.GetITunesTracks()
-                                      where tracks.Enabled.Equals(false) 
-                                      && tracks.Location.ToLower().EndsWith(".mp3")
-                                      //&& !tracks.Location.StartsWith(@"C:\Users\Public\Music\iTunes Controlled\")
-                                      //&& tracks.Rating.Equals(0) 
-                                      //&& tracks.PlayedCount <= 1
-                                      //&& tracks.Location.StartsWith(@"C:\Users\Public\Music\Mashups\")
-                                      //&& tracks.Location.StartsWith(@"C:\Users\Public\Music\Artists\Original Soundtrack\")
-                                      orderby tracks.Artist
-                                      select tracks).Take(100);
-            
+            var selectedTracks = (from tracks in Common.ITunesMusicTracks
+                                  where tracks.Enabled.Equals(false)
+                                  && tracks.Location.ToLower().EndsWith(".mp3")
+                                  orderby tracks.trackID descending
+                                  select tracks).Take(100);
+
             if (testOnly.Checked)
             {
-                resultsGrid.DataSource = selectedTracks.Select(t => new { t.Name, t.Artist, t.Location, t.Genre, Rating = (t.Rating / 20), t.PlayedDate, t.PlayedCount, t.Enabled, t.TrackDatabaseID }).ToList();
+                resultsGrid.DataSource = selectedTracks.Select(t => new { t.Name, t.Artist, t.Location, t.Genre, Rating = (t.Rating / 20), t.PlayedDate, t.PlayedCount, t.Enabled, t.trackID, t.sourceID, t.playlistID, t.TrackDatabaseID }).ToList();
             }
             else
             {
                 status.Text = "Removing unchecked tracks";
-                
+
                 foreach (var track in selectedTracks)
                 {
-                    status.Text = string.Format("Removing: {0}\r\n{1}", track.Location, status.Text);
-                    string path = track.Location;
-                    track.Delete();
-                    File.Delete(path);
+                    try
+                    {
+                        DeleteTrackFromItunesAndDisk(track);
+                    }
+                    catch (Exception)
+                    {
+                        UpdateStatus("error deleting track, reload data");
+                        testOnly.Checked = true;
+                        return;
+                    }
                 }
             }
             //always reset to test after an action
             testOnly.Checked = true;
+        }
+
+        private void DeleteTrackFromItunesAndDisk(IITFileOrCDTrack track)
+        {
+            UpdateStatus("Removing: " + track.Location);
+            string path = track.Location;
+            //Common.ITunesMusicTracks.Remove(track);
+            track.Delete();
+            File.Delete(path);
         }
 
         private void listMusicInItunes_Click(object sender, EventArgs e)
@@ -247,19 +257,26 @@ namespace iTunesCOMSample
 
         private void SetSelectedTrackValues(int trackDatabaseID)
         {
-            var iTunesFile = Common.ITunesMusicTracks.Find(t => t.TrackDatabaseID == trackDatabaseID);
-            UpdateStatus("Selected: " + iTunesFile.Name);
-            selectedAlbum.Text = iTunesFile.Album;
-            selectedArtist.Text = iTunesFile.Artist;
-            selectedTrack.Text = iTunesFile.Name;
-            selectedYear.Text = iTunesFile.Year.ToString();
-            selectedTrackNumber.Text = iTunesFile.TrackNumber.ToString();
-            selectedArtwork.Text = (iTunesFile.Artwork.Count == 1).ToString();
-
-            if (File.Exists(iTunesFile.Location))
+            try
             {
-                FileInfo fi = new FileInfo(iTunesFile.Location);
-                selectedAlbumImageExist.Text = (File.Exists(fi.DirectoryName + "\\Album.jpg")).ToString();
+                var iTunesFile = Common.ITunesMusicTracks.Find(t => t.TrackDatabaseID == trackDatabaseID);
+                UpdateStatus("Selected: " + iTunesFile.Name);
+                selectedAlbum.Text = iTunesFile.Album;
+                selectedArtist.Text = iTunesFile.Artist;
+                selectedTrack.Text = iTunesFile.Name;
+                selectedYear.Text = iTunesFile.Year.ToString();
+                selectedTrackNumber.Text = iTunesFile.TrackNumber.ToString();
+                selectedArtwork.Text = (iTunesFile.Artwork.Count == 1).ToString();
+
+                if (File.Exists(iTunesFile.Location))
+                {
+                    FileInfo fi = new FileInfo(iTunesFile.Location);
+                    selectedAlbumImageExist.Text = (File.Exists(fi.DirectoryName + "\\Album.jpg")).ToString();
+                }
+            }
+            catch(Exception)
+            {
+                UpdateStatus("an error occured setting selected track values");
             }
         }
 
@@ -292,8 +309,14 @@ namespace iTunesCOMSample
                 //update details panel
                 if (resultsGrid.SelectedRows.Count == 1)
                 {
-                    selectedTrackDatabaseID = int.Parse(resultsGrid.SelectedRows[0].Cells["TrackDatabaseID"].Value.ToString());
-                    SetSelectedTrackValues(selectedTrackDatabaseID);
+                    int trackDatabaseID = int.Parse(resultsGrid.SelectedRows[0].Cells["TrackDatabaseID"].Value.ToString());
+
+                    //since this is called on every mouse click, it re-loads this data alot, including trying to load after deleted
+                    if(trackDatabaseID != selectedTrackDatabaseID)
+                    {
+                        selectedTrackDatabaseID = trackDatabaseID;
+                        SetSelectedTrackValues(selectedTrackDatabaseID);
+                    }
                 }
 
                 if (e.Button == MouseButtons.Right)
@@ -301,13 +324,13 @@ namespace iTunesCOMSample
                     ContextMenu m = new ContextMenu();
 
                     var mi1 = new MenuItem();
-                    mi1.Text = "Move: Selected Rows";
+                    mi1.Text = "Move: Selected Row(s)";
                     mi1.Name = "MoveSelectedRows";
                     mi1.Click += moveSelectedRows_Click;
                     m.MenuItems.Add(mi1);
 
                     var mi2 = new MenuItem();
-                    mi2.Text = "Update Metadata: Selected Rows";
+                    mi2.Text = "Update Metadata: Selected Row(s)";
                     mi2.Name = "UpdateMetadataSelectedRows";
                     mi2.Click += updateMetadataSelectedRows_Click;
                     m.MenuItems.Add(mi2);
@@ -317,6 +340,12 @@ namespace iTunesCOMSample
                     mi3.Name = "OpenWindowsExplorer";
                     mi3.Click += openWindowsExplorer_Click;
                     m.MenuItems.Add(mi3);
+
+                    var mi4 = new MenuItem();
+                    mi4.Text = "If unchecked, Remove Selected Row(s)";
+                    mi4.Name = "OpenWindowsExplorer";
+                    mi4.Click += removeSelectedRows_Click;
+                    m.MenuItems.Add(mi4);
 
                     m.Show(resultsGrid, new Point(e.X, e.Y));
                 }
@@ -366,6 +395,48 @@ namespace iTunesCOMSample
             }
 
             UpdateStatus("Update Metadata: Complete");
+        }
+
+        private void removeSelectedRows_Click(object sender, EventArgs e)
+        {
+            if (testOnly.Checked)
+                UpdateStatus("--------------------------------------------------- TEST ONLY ---------------------------------------------------");
+
+            UpdateStatus("If unchecked, Remove Selected Row(s): Started");
+
+
+            foreach (DataGridViewRow row in resultsGrid.SelectedRows)
+            {
+                try
+                {
+                    int trackDatabaseID = int.Parse(row.Cells["TrackDatabaseID"].Value.ToString());
+                    var iTunesFile = Common.ITunesMusicTracks.Find(t => t.TrackDatabaseID == trackDatabaseID);
+
+                    if (!iTunesFile.Enabled)
+                    {
+                        if (testOnly.Checked)
+                        {
+                            UpdateStatus("TEST Removed: " + iTunesFile.Location);
+                        }
+                        else
+                        {
+                            DeleteTrackFromItunesAndDisk(iTunesFile);
+                        }
+                    }
+                    else
+                    {
+                        UpdateStatus("Enabled: " + iTunesFile.Location);
+                    }
+                }
+                catch(Exception ex)
+                {
+                    UpdateStatus("error occured: " + ex.Message);
+                }
+
+            }
+
+
+            UpdateStatus("If unchecked, Remove Selected Row(s): Complete");
         }
 
         private void deleteEmptyFolders_Click(object sender, EventArgs e)

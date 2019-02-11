@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using iTunesLib;
+using System.Windows.Forms;
 
 namespace iTunesCOMSample
 {
@@ -208,12 +209,14 @@ namespace iTunesCOMSample
         public static void ReloadITunesMusicTracks()
         {
             if (_itunesTracks != null)
-                _itunesTracks.Clear();
-            ITunesMusicTracks.Count();
+            {
+                _itunesTracks = null;
+                Common.ITunesMusicTracks.Count();
+            }
         }
 
         private static List<IITFileOrCDTrack> _itunesTracks;
-
+        
         public static IEnumerable<IITFileOrCDTrack> GetITunesTracks()
         {
             int i = 0;
