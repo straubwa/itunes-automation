@@ -318,6 +318,11 @@ namespace iTunesCOMSample
                         SetSelectedTrackValues(selectedTrackDatabaseID);
                     }
                 }
+                
+                if(e.Button == MouseButtons.Left)
+                {
+
+                }
 
                 if (e.Button == MouseButtons.Right)
                 {
@@ -351,6 +356,22 @@ namespace iTunesCOMSample
                 }
             }
 
+        }
+
+        private void resultsGrid_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int currentMouseOverRow = resultsGrid.HitTest(e.X, e.Y).RowIndex;
+
+            if (currentMouseOverRow >= 0)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    var track = Common.ITunesMusicTracks.Where(t => t.TrackDatabaseID == selectedTrackDatabaseID).FirstOrDefault();
+                    //need to stop playing if updating the location of the file...
+                    track.Reveal();
+                    track.Play();
+                }
+            }
         }
 
         private void openWindowsExplorer_Click(object sender, EventArgs e)
@@ -520,5 +541,6 @@ namespace iTunesCOMSample
                 UpdateStatus(artist);
             }
         }
+
     }
 }

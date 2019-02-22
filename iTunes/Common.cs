@@ -179,6 +179,7 @@ namespace iTunesCOMSample
                 File.Copy(oldPathAndFileName, newPathAndFileName, true);
                 OnStatusUpdate("File Copied");
 
+                Common.StopSongForUpdate();
                 //update iTunesFile Location
                 track.Location = newPathAndFileName;
 
@@ -235,6 +236,12 @@ namespace iTunesCOMSample
                 }
                 i++;
             }
+        }
+
+        public static void StopSongForUpdate()
+        {
+            var itunes = new iTunesAppClass();
+            itunes.Stop();
         }
 
         public static void DeleteEmptyDirectories(string dir, bool testOnly)

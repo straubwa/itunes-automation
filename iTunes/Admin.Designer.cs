@@ -76,7 +76,7 @@
             this.missingAlbum.Font = new System.Drawing.Font("Calibri", 12F);
             this.missingAlbum.ForeColor = System.Drawing.Color.White;
             this.missingAlbum.Location = new System.Drawing.Point(16, 87);
-            this.missingAlbum.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.missingAlbum.Margin = new System.Windows.Forms.Padding(4);
             this.missingAlbum.Name = "missingAlbum";
             this.missingAlbum.Size = new System.Drawing.Size(160, 64);
             this.missingAlbum.TabIndex = 0;
@@ -91,7 +91,7 @@
             this.updateLocation.Font = new System.Drawing.Font("Calibri", 12F);
             this.updateLocation.ForeColor = System.Drawing.Color.White;
             this.updateLocation.Location = new System.Drawing.Point(16, 16);
-            this.updateLocation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.updateLocation.Margin = new System.Windows.Forms.Padding(4);
             this.updateLocation.Name = "updateLocation";
             this.updateLocation.Size = new System.Drawing.Size(160, 64);
             this.updateLocation.TabIndex = 2;
@@ -124,13 +124,14 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.resultsGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.resultsGrid.Location = new System.Drawing.Point(17, 176);
-            this.resultsGrid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.resultsGrid.Margin = new System.Windows.Forms.Padding(4);
             this.resultsGrid.Name = "resultsGrid";
             this.resultsGrid.ReadOnly = true;
             this.resultsGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.resultsGrid.Size = new System.Drawing.Size(1317, 471);
             this.resultsGrid.TabIndex = 3;
             this.resultsGrid.MouseClick += new System.Windows.Forms.MouseEventHandler(this.resultsGrid_MouseClick);
+            this.resultsGrid.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.resultsGrid_MouseDoubleClick);
             // 
             // removeUnchecked
             // 
@@ -139,7 +140,7 @@
             this.removeUnchecked.Font = new System.Drawing.Font("Calibri", 12F);
             this.removeUnchecked.ForeColor = System.Drawing.Color.White;
             this.removeUnchecked.Location = new System.Drawing.Point(184, 16);
-            this.removeUnchecked.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.removeUnchecked.Margin = new System.Windows.Forms.Padding(4);
             this.removeUnchecked.Name = "removeUnchecked";
             this.removeUnchecked.Size = new System.Drawing.Size(160, 64);
             this.removeUnchecked.TabIndex = 4;
@@ -153,7 +154,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.status.Font = new System.Drawing.Font("Calibri", 9.75F);
             this.status.Location = new System.Drawing.Point(17, 655);
-            this.status.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.status.Margin = new System.Windows.Forms.Padding(4);
             this.status.Multiline = true;
             this.status.Name = "status";
             this.status.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -167,7 +168,7 @@
             this.testOnly.Checked = true;
             this.testOnly.CheckState = System.Windows.Forms.CheckState.Checked;
             this.testOnly.Location = new System.Drawing.Point(1244, 16);
-            this.testOnly.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.testOnly.Margin = new System.Windows.Forms.Padding(4);
             this.testOnly.Name = "testOnly";
             this.testOnly.Size = new System.Drawing.Size(91, 21);
             this.testOnly.TabIndex = 6;
@@ -181,7 +182,7 @@
             this.listMusicInItunes.Font = new System.Drawing.Font("Calibri", 12F);
             this.listMusicInItunes.ForeColor = System.Drawing.Color.White;
             this.listMusicInItunes.Location = new System.Drawing.Point(184, 87);
-            this.listMusicInItunes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listMusicInItunes.Margin = new System.Windows.Forms.Padding(4);
             this.listMusicInItunes.Name = "listMusicInItunes";
             this.listMusicInItunes.Size = new System.Drawing.Size(160, 64);
             this.listMusicInItunes.TabIndex = 7;
@@ -196,7 +197,7 @@
             this.listFilesNotInItunes.Font = new System.Drawing.Font("Calibri", 12F);
             this.listFilesNotInItunes.ForeColor = System.Drawing.Color.White;
             this.listFilesNotInItunes.Location = new System.Drawing.Point(352, 87);
-            this.listFilesNotInItunes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listFilesNotInItunes.Margin = new System.Windows.Forms.Padding(4);
             this.listFilesNotInItunes.Name = "listFilesNotInItunes";
             this.listFilesNotInItunes.Size = new System.Drawing.Size(160, 64);
             this.listFilesNotInItunes.TabIndex = 8;
@@ -211,7 +212,7 @@
             this.deleteImageFiles.Font = new System.Drawing.Font("Calibri", 12F);
             this.deleteImageFiles.ForeColor = System.Drawing.Color.White;
             this.deleteImageFiles.Location = new System.Drawing.Point(352, 16);
-            this.deleteImageFiles.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.deleteImageFiles.Margin = new System.Windows.Forms.Padding(4);
             this.deleteImageFiles.Name = "deleteImageFiles";
             this.deleteImageFiles.Size = new System.Drawing.Size(160, 64);
             this.deleteImageFiles.TabIndex = 9;
@@ -226,7 +227,7 @@
             this.albumRenameReset.Font = new System.Drawing.Font("Calibri", 12F);
             this.albumRenameReset.ForeColor = System.Drawing.Color.White;
             this.albumRenameReset.Location = new System.Drawing.Point(520, 16);
-            this.albumRenameReset.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.albumRenameReset.Margin = new System.Windows.Forms.Padding(4);
             this.albumRenameReset.Name = "albumRenameReset";
             this.albumRenameReset.Size = new System.Drawing.Size(160, 64);
             this.albumRenameReset.TabIndex = 10;
@@ -241,7 +242,7 @@
             this.updateMp3Metadata.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.updateMp3Metadata.ForeColor = System.Drawing.Color.White;
             this.updateMp3Metadata.Location = new System.Drawing.Point(688, 16);
-            this.updateMp3Metadata.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.updateMp3Metadata.Margin = new System.Windows.Forms.Padding(4);
             this.updateMp3Metadata.Name = "updateMp3Metadata";
             this.updateMp3Metadata.Size = new System.Drawing.Size(160, 64);
             this.updateMp3Metadata.TabIndex = 11;
@@ -256,7 +257,7 @@
             this.listMusicWithoutArtwork.Font = new System.Drawing.Font("Calibri", 12F);
             this.listMusicWithoutArtwork.ForeColor = System.Drawing.Color.White;
             this.listMusicWithoutArtwork.Location = new System.Drawing.Point(520, 87);
-            this.listMusicWithoutArtwork.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listMusicWithoutArtwork.Margin = new System.Windows.Forms.Padding(4);
             this.listMusicWithoutArtwork.Name = "listMusicWithoutArtwork";
             this.listMusicWithoutArtwork.Size = new System.Drawing.Size(160, 64);
             this.listMusicWithoutArtwork.TabIndex = 12;
@@ -271,7 +272,7 @@
             this.listItunesControlledSongs.Font = new System.Drawing.Font("Calibri", 12F);
             this.listItunesControlledSongs.ForeColor = System.Drawing.Color.White;
             this.listItunesControlledSongs.Location = new System.Drawing.Point(688, 87);
-            this.listItunesControlledSongs.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listItunesControlledSongs.Margin = new System.Windows.Forms.Padding(4);
             this.listItunesControlledSongs.Name = "listItunesControlledSongs";
             this.listItunesControlledSongs.Size = new System.Drawing.Size(160, 64);
             this.listItunesControlledSongs.TabIndex = 13;
@@ -284,7 +285,7 @@
             this.newRootPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.newRootPath.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.newRootPath.Location = new System.Drawing.Point(819, 827);
-            this.newRootPath.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.newRootPath.Margin = new System.Windows.Forms.Padding(4);
             this.newRootPath.Name = "newRootPath";
             this.newRootPath.Size = new System.Drawing.Size(296, 27);
             this.newRootPath.TabIndex = 14;
@@ -310,7 +311,7 @@
             this.deleteEmptyFolders.Font = new System.Drawing.Font("Calibri", 12F);
             this.deleteEmptyFolders.ForeColor = System.Drawing.Color.White;
             this.deleteEmptyFolders.Location = new System.Drawing.Point(856, 15);
-            this.deleteEmptyFolders.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.deleteEmptyFolders.Margin = new System.Windows.Forms.Padding(4);
             this.deleteEmptyFolders.Name = "deleteEmptyFolders";
             this.deleteEmptyFolders.Size = new System.Drawing.Size(160, 64);
             this.deleteEmptyFolders.TabIndex = 16;
@@ -335,7 +336,7 @@
             this.legacyRootPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.legacyRootPath.Font = new System.Drawing.Font("Calibri", 9.75F);
             this.legacyRootPath.Location = new System.Drawing.Point(145, 827);
-            this.legacyRootPath.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.legacyRootPath.Margin = new System.Windows.Forms.Padding(4);
             this.legacyRootPath.Name = "legacyRootPath";
             this.legacyRootPath.Size = new System.Drawing.Size(340, 27);
             this.legacyRootPath.TabIndex = 18;
@@ -350,7 +351,7 @@
             this.clearStatus.Font = new System.Drawing.Font("Calibri", 10F);
             this.clearStatus.ForeColor = System.Drawing.Color.Black;
             this.clearStatus.Location = new System.Drawing.Point(495, 821);
-            this.clearStatus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.clearStatus.Margin = new System.Windows.Forms.Padding(4);
             this.clearStatus.Name = "clearStatus";
             this.clearStatus.Size = new System.Drawing.Size(163, 37);
             this.clearStatus.TabIndex = 19;
@@ -365,7 +366,7 @@
             this.loadItunesTracks.Font = new System.Drawing.Font("Calibri", 12F);
             this.loadItunesTracks.ForeColor = System.Drawing.Color.White;
             this.loadItunesTracks.Location = new System.Drawing.Point(856, 86);
-            this.loadItunesTracks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.loadItunesTracks.Margin = new System.Windows.Forms.Padding(4);
             this.loadItunesTracks.Name = "loadItunesTracks";
             this.loadItunesTracks.Size = new System.Drawing.Size(160, 64);
             this.loadItunesTracks.TabIndex = 20;
@@ -438,7 +439,7 @@
             this.selectedArtist.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.selectedArtist.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.selectedArtist.Location = new System.Drawing.Point(873, 655);
-            this.selectedArtist.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.selectedArtist.Margin = new System.Windows.Forms.Padding(4);
             this.selectedArtist.Name = "selectedArtist";
             this.selectedArtist.Size = new System.Drawing.Size(385, 27);
             this.selectedArtist.TabIndex = 26;
@@ -448,7 +449,7 @@
             this.selectedTrack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.selectedTrack.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.selectedTrack.Location = new System.Drawing.Point(873, 688);
-            this.selectedTrack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.selectedTrack.Margin = new System.Windows.Forms.Padding(4);
             this.selectedTrack.Name = "selectedTrack";
             this.selectedTrack.Size = new System.Drawing.Size(385, 27);
             this.selectedTrack.TabIndex = 27;
@@ -458,7 +459,7 @@
             this.selectedAlbum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.selectedAlbum.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.selectedAlbum.Location = new System.Drawing.Point(873, 721);
-            this.selectedAlbum.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.selectedAlbum.Margin = new System.Windows.Forms.Padding(4);
             this.selectedAlbum.Name = "selectedAlbum";
             this.selectedAlbum.Size = new System.Drawing.Size(385, 27);
             this.selectedAlbum.TabIndex = 28;
@@ -504,7 +505,7 @@
             this.selectedYear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.selectedYear.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.selectedYear.Location = new System.Drawing.Point(873, 753);
-            this.selectedYear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.selectedYear.Margin = new System.Windows.Forms.Padding(4);
             this.selectedYear.Name = "selectedYear";
             this.selectedYear.Size = new System.Drawing.Size(79, 27);
             this.selectedYear.TabIndex = 32;
@@ -517,7 +518,7 @@
             this.saveSelected.Font = new System.Drawing.Font("Calibri", 10F);
             this.saveSelected.ForeColor = System.Drawing.Color.Black;
             this.saveSelected.Location = new System.Drawing.Point(1151, 821);
-            this.saveSelected.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveSelected.Margin = new System.Windows.Forms.Padding(4);
             this.saveSelected.Name = "saveSelected";
             this.saveSelected.Size = new System.Drawing.Size(184, 37);
             this.saveSelected.TabIndex = 33;
@@ -530,7 +531,7 @@
             this.selectedTrackNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.selectedTrackNumber.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.selectedTrackNumber.Location = new System.Drawing.Point(1116, 753);
-            this.selectedTrackNumber.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.selectedTrackNumber.Margin = new System.Windows.Forms.Padding(4);
             this.selectedTrackNumber.Name = "selectedTrackNumber";
             this.selectedTrackNumber.Size = new System.Drawing.Size(79, 27);
             this.selectedTrackNumber.TabIndex = 35;
@@ -554,7 +555,7 @@
             this.starredArtists.Font = new System.Drawing.Font("Calibri", 12F);
             this.starredArtists.ForeColor = System.Drawing.Color.White;
             this.starredArtists.Location = new System.Drawing.Point(1024, 86);
-            this.starredArtists.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.starredArtists.Margin = new System.Windows.Forms.Padding(4);
             this.starredArtists.Name = "starredArtists";
             this.starredArtists.Size = new System.Drawing.Size(160, 64);
             this.starredArtists.TabIndex = 36;
@@ -604,7 +605,7 @@
             this.Controls.Add(this.resultsGrid);
             this.Controls.Add(this.updateLocation);
             this.Controls.Add(this.missingAlbum);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Admin";
             this.Text = "Music Admin";
             ((System.ComponentModel.ISupportInitialize)(this.resultsGrid)).EndInit();
